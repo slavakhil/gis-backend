@@ -1,0 +1,121 @@
+{
+    "actions": {
+        "new": "Добавить запись",
+        "edit": "Редактировать",
+        "show": "Информация",
+        "delete": "Удалить",
+        "bulkDelete": "Удалить все",
+        "list": "Список"
+    },
+    "buttons": {
+        "save": "Сохранить",
+        "addNewItem": "Добавить новую запись",
+        "filter": "Фильтр",
+        "filterActive": "Фильтр ({{count}})",
+        "applyChanges": "Принять изменения",
+        "resetFilter": "Сбросить фильтр",
+        "confirmRemovalMany": "Подтвердить удаление {{count}} записи",
+        "confirmRemovalMany_plural": "Подтвердить удаление {{count}} записей",
+        "logout": "Выйти из аккаунта",
+        "login": "Войти",
+        "seeTheDocumentation": "See: <1>the documentation</1>",
+        "createFirstRecord": "Создать первую запись",
+        "cancel": "Отменить",
+        "confirm": "Подтвердить",
+        "contactUs": "Contact us"
+    },
+    "components": {
+        "DropZone": {
+            "placeholder": "Drop your file here, or click to browse",
+            "acceptedSize": "Max size: {{maxSize}}",
+            "acceptedType": "Supports: {{mimeTypes}}",
+            "unsupportedSize": "File {{fileName}} is too big",
+            "unsupportedType": "File {{fileName}} has unsupported type: {{fileType}}"
+        },
+        "LanguageSelector": {
+            "availableLanguages": {
+                "de": "German",
+                "en": "English",
+                "es": "Spanish",
+                "it": "Italian",
+                "ja": "Japanese",
+                "pl": "Polish",
+                "pt-BR": "Portuguese (Brazil)",
+                "ua": "Ukrainian",
+                "zh-CN": "Chinese"
+            }
+        },
+        "Login": {
+            "welcomeHeader": "Добро пожаловать",
+            "welcomeMessage": "",
+            "properties": {
+                "email": "Электронная почта",
+                "password": "Пароль"
+            },
+            "loginButton": "Войти"
+        }
+    },
+    "labels": {
+        "navigation": "Навигация",
+        "pages": "Pages",
+        "selectedRecords": "Выбрано ({{selected}})",
+        "filters": "Фильтры",
+        "adminVersion": "Admin: {{version}}",
+        "appVersion": "App: {{version}}",
+        "dashboard": ""
+    },
+    "properties": {
+        "length": "Длина",
+        "from": "От",
+        "to": "До",
+        "id": "ID",
+        "email": "Электронная почта",
+        "isAdmin": "Администратор?",
+        "createdAt": "Создано",
+        "updatedAt": "Обновлено",
+        "date": "Дата публикации",
+        "content": "Текст новости",
+        "author": "Автор",
+        "position": "Должность",
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "patronymic": "Отчество",
+        "photo": "Фото",
+        "name": "Название",
+        "link": "Ссылка",
+        "password": "Пароль"
+    },
+    "messages": {
+        "successfullyBulkDeleted": "Успешно удалена {{count}} запись",
+        "successfullyBulkDeleted_plural": "Успешно удалены записи: {{count}}",
+        "successfullyDeleted": "Успешно удалена запись",
+        "successfullyUpdated": "Успешно обновлена запись",
+        "thereWereValidationErrors": "Возникли ошибки валидации",
+        "forbiddenError": "You cannot perform action {{actionName}} on {{resourceId}}",
+        "anyForbiddenError": "You cannot perform given action",
+        "successfullyCreated": "Успешно добавлена новая запись",
+        "bulkDeleteError": "Возникла ошибка при удалении записей",
+        "errorFetchingRecords": "Возникла ошибка при получении записей",
+        "errorFetchingRecord": "Возникла ошибка при получении записи",
+        "noRecordsSelected": "Вы не выбрали ни одну запись",
+        "theseRecordsWillBeRemoved": "Выбранная запись будет удалена",
+        "theseRecordsWillBeRemoved_plural": "Выбранные записи будут удалены",
+        "pickSomeFirstToRemove": "In order to remove records, you have to pick them first",
+        "error404Resource": "Resource of given id: {{resourceId}} cannot be found",
+        "error404Action": "Resource of given id: {{resourceId}} does not have an action with name: {{actionName}} or you are not authorized to use it!",
+        "error404Record": "Resource of given id: {{resourceId}} does not have a record with id: {{recordId}} or you are not authorized to use it!",
+        "seeConsoleForMore": "See development console for more details...",
+        "noActionComponent": "You have to implement action component for your Action",
+        "noRecordsInResource": "Нет записей для таблицы",
+        "noRecords": "Нет записей",
+        "confirmDelete": "Вы действительно хотите удалить эту запись?",
+        "invalidCredentials": "Неверный логин и/или пароль",
+        "keyPlaceholder": "KEY",
+        "valuePlaceholder": "VALUE",
+        "initialKey": "Key-{{number}}",
+        "keyInUse": "Object keys must be unique",
+        "keyValuePropertyDefaultDescription": "All values are stored as text. Keys must be unique, duplicate keys will not be saved.",
+        "pageNotFound_title": "Страница не найдена",
+        "pageNotFound_subtitle": "Страницы <strong>\"{{pageName}}\"</strong> не существует"
+    }
+}

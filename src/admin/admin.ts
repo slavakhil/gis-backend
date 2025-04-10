@@ -1,19 +1,17 @@
-import AdminJS from 'adminjs';
-import * as AdminJSMikroORM from '@adminjs/mikroorm';
-import AdminJSExpress from '@adminjs/express';
-import bcrypt from 'bcrypt';
-import session from 'express-session';
-import { locale } from './locale/index.js';
+import AdminJS from "adminjs";
+import * as AdminJSMikroORM from "@adminjs/mikroorm";
+import AdminJSExpress from "@adminjs/express";
+import bcrypt from "bcrypt";
+import session from "express-session";
+import { locale } from "./locale/index.js";
 
-// Ресурсы
-import userResource from './resources/user.resource.ts';
-import newsResource from './resources/news.resource.ts';
-import teamResource from './resources/team.resource.ts';
-import moduleResource from './resources/module.resource.ts';
-
-import { User } from '../entities/user.entity.ts';
-import { componentLoader } from './components.bundler.ts';
-import fileResource from './resources/file.resource.ts';
+import { User } from "../entities/user.entity.js";
+import { componentLoader } from "./components.bundler.js";
+import getModuleResource from "./resources/module.resource.js";
+import getNewsResource from "./resources/news.resource.js";
+import getTeamResource from "./resources/team.resource.js";
+import getUserResource from "./resources/user.resource.js";
+import getFileResource from "./resources/file.resource.js";
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -22,7 +20,7 @@ AdminJS.registerAdapter({
 
 export const createAdminPanel = async (orm) => {
   const admin = new AdminJS({
-    rootPath: '/admin',
+    rootPath: "/admin",
     databases: [orm],
     locale,
     // dashboard: {
@@ -30,13 +28,18 @@ export const createAdminPanel = async (orm) => {
     // },
     componentLoader,
     branding: {
-      logo: '',
-      companyName: 'Панель администратора',
-      softwareBrothers: false,
+      logo: "",
+      companyName: "Панель администратора",
       withMadeWithLove: false,
     },
 
-    resources: [userResource(orm), newsResource(orm), teamResource(orm), moduleResource(orm), fileResource(orm)],
+    resources: [
+      getNewsResource(orm),
+      getTeamResource(orm),
+      getUserResource(orm),
+      getFileResource(orm),
+      getModuleResource(orm),
+    ],
   });
 
   const em = orm.em.fork();
@@ -54,13 +57,13 @@ export const createAdminPanel = async (orm) => {
         }
         return null;
       },
-      cookiePassword: 'session-secret',
-      cookieName: 'adminjs',
+      cookiePassword: "session-secret",
+      cookieName: "adminjs",
     },
     null,
     {
       store: new session.MemoryStore(),
-      secret: 'session-secret',
+      secret: "session-secret",
       resave: false,
       saveUninitialized: true,
       cookie: {

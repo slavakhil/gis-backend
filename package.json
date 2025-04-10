@@ -5,9 +5,16 @@
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "dev": "node --loader ts-node/esm --experimental-specifier-resolution=node src/app.ts",
-    "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "start:dev": "nodemon",
+    "build": "tsc"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./dist/sources/mikroorm/config.js",
+      "./src/configs/mikro-orm.config.ts"
+    ]
   },
   "keywords": [],
   "author": "",

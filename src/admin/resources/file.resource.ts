@@ -3,16 +3,17 @@ import uploadFileFeature from "@adminjs/upload";
 import path from "path";
 import { File } from "../../entities/file.entity.js";
 import { componentLoader } from "../components.bundler.js";
+import { EntityManager } from "@mikro-orm/postgresql";
 
-const FileResource: ResourceWithOptions = {
-  resource: File,
+const getFileResource = (orm: EntityManager): ResourceWithOptions => ({
+  resource: { model: File, orm },
   options: {
-    navigation: { name: "Контент", icon: "Attachment" },
+    navigation: { name: "Sasd asd asdasdDfjsdnfsdj", icon: "asd" },
     properties: {
       id: { isVisible: false },
       name: { isTitle: true },
       path: {
-        isVisible: { list: false, filter: false, show: true, edit: false },
+        isVisible: { list: false, filter: false, show: true, edit: true },
       },
       mimetype: {},
       size: {},
@@ -27,7 +28,7 @@ const FileResource: ResourceWithOptions = {
         local: {
           bucket: path.join(process.cwd(), "uploads"),
           opts: {
-            baseUrl: undefined,
+            baseUrl: "/uploads",
           },
         },
       },
@@ -42,6 +43,6 @@ const FileResource: ResourceWithOptions = {
       uploadPath: (record, filename) => `photos/${Date.now()}-${filename}`,
     }),
   ],
-};
+});
 
-export default FileResource;
+export default getFileResource;
