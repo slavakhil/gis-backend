@@ -1,40 +1,47 @@
-import { features } from 'process';
-import { File } from '../../entities/file.entity.js';
-import uploadFileFeature from '@adminjs/upload';
-import path from 'path';
+import AdminJS, { ResourceWithOptions } from "adminjs";
+import uploadFileFeature from "@adminjs/upload";
+import path from "path";
+import { File } from "../../entities/file.entity.js";
+import { componentLoader } from "../components.bundler.js";
 
-export default (orm) => ({
-  resource: { model: File, orm },
+const FileResource: ResourceWithOptions = {
+  resource: File,
+  options: {
+    navigation: { name: "Контент", icon: "Attachment" },
+    properties: {
+      id: { isVisible: false },
+      name: { isTitle: true },
+      path: {
+        isVisible: { list: false, filter: false, show: true, edit: false },
+      },
+      mimetype: {},
+      size: {},
+      createdAt: {
+        isVisible: { edit: false, show: true, list: true, filter: true },
+      },
+    },
+  },
   features: [
     uploadFileFeature({
       provider: {
         local: {
-          bucket: path.join(process.cwd(), 'uploads'),
+          bucket: path.join(process.cwd(), "uploads"),
+          opts: {
+            baseUrl: undefined,
+          },
         },
       },
+      componentLoader,
       properties: {
-        key: 'path',
-        mimeType: 'mimetype',
-        size: 'size',
-        filename: 'name',
-        file: 'uploadFile',
+        key: "path",
+        mimeType: "mimetype",
+        size: "size",
+        filename: "name",
+        file: "uploadFile",
       },
       uploadPath: (record, filename) => `photos/${Date.now()}-${filename}`,
     }),
   ],
+};
 
-  // options: {
-  //   id: 'Модули',
-  //   name: 'Module', // Название ресурса в меню
-  //   icon: 'Newspaper', // Иконка из набора AdminJS
-  //   parent: null, // Убираем группировку
-  //   listProperties: ['name', 'link'],
-  //   actions: {
-  //     list: { isAccessible: () => true },
-  //     show: { isAccessible: () => true },
-  //     new: { isAccessible: ({ currentAdmin }) => currentAdmin?.isAdmin },
-  //     edit: { isAccessible: ({ currentAdmin }) => currentAdmin?.isAdmin },
-  //     delete: { isAccessible: ({ currentAdmin }) => currentAdmin?.isAdmin },
-  //   },
-  // },
-});
+export default FileResource;
