@@ -29,6 +29,7 @@ export const TeamMember = {
     },
     photo: {
       type: 'text',
+      nullable: true,
       fieldName: 'photo',
     },
   },

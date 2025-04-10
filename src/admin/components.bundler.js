@@ -3,7 +3,7 @@ import path from 'path';
 import * as url from 'url';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-console.log(__dirname);
+
 export const componentLoader = new ComponentLoader();
 
 export const add = (url, componentName) => componentLoader.add(componentName, path.join(__dirname, url));
@@ -14,6 +14,3 @@ export const override = (url, componentName) => componentLoader.override(compone
  * Overridable components
  */
 override('components/dashboard', 'DashboardRoute');
-// override('components/photo-thumbnail', 'PhotoThumbnail');
-
-console.log('Component loader: ', componentLoader);

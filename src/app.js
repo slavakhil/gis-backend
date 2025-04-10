@@ -9,7 +9,6 @@ const start = async () => {
     await orm.getSchemaGenerator().updateSchema();
 
     const app = express();
-    app.use('/uploads', express.static('public/uploads'));
 
     const { admin, adminRouter } = await createAdminPanel(orm);
     app.use(admin.options.rootPath, adminRouter);
