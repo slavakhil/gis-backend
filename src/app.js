@@ -9,7 +9,7 @@ const start = async () => {
     await orm.getSchemaGenerator().updateSchema();
 
     const app = express();
-
+    app.use('/public', express.static('public'));
     const { admin, adminRouter } = await createAdminPanel(orm);
     app.use(admin.options.rootPath, adminRouter);
 

@@ -1,3 +1,5 @@
+import { File } from "./file.entity.js";
+
 export const TeamMember = {
   name: 'TeamMember',
   tableName: 'team_members',
@@ -28,9 +30,9 @@ export const TeamMember = {
       fieldName: 'email',
     },
     photo: {
-      type: 'text',
+      reference: 'many-to-one',
+      entity: () => File,
       nullable: true,
-      fieldName: 'photo',
     },
   },
 };

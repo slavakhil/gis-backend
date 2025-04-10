@@ -1,19 +1,19 @@
 export const Module = {
-  name: "Module",
-  tableName: "modules",
+  name: 'Module',
+  tableName: 'modules',
   properties: {
     id: {
       primary: true,
-      type: "number",
+      type: 'number',
       autoincrement: true,
     },
     name: {
-      type: "text",
-      fieldName: "name",
+      type: 'text',
+      fieldName: 'name',
     },
     link: {
-      type: "text",
-      fieldName: "link",
+      type: 'text',
+      fieldName: 'link',
     },
   },
 };

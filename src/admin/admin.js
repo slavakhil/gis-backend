@@ -13,6 +13,7 @@ import moduleResource from './resources/module.resource.js';
 
 import { User } from '../entities/user.entity.js';
 import { componentLoader } from './components.bundler.js';
+import fileResource from './resources/file.resource.js';
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -35,7 +36,7 @@ export const createAdminPanel = async (orm) => {
       withMadeWithLove: false,
     },
 
-    resources: [userResource(orm), newsResource(orm), teamResource(orm), moduleResource(orm)],
+    resources: [userResource(orm), newsResource(orm), teamResource(orm), moduleResource(orm), fileResource(orm)],
   });
 
   const em = orm.em.fork();
