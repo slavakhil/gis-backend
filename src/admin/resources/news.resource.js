@@ -1,13 +1,13 @@
-import { News } from "../../entities/news.entity.js";
+import { News } from '../../entities/news.entity.js';
 
 export default (orm) => ({
   resource: { model: News, orm },
   options: {
-    id: "Новости",
-    name: "News",
-    icon: "Users",
+    id: 'Новости',
+    name: 'News',
+    icon: 'Users',
     parent: null,
-
+    listProperties: ['author', 'content', 'date', 'createdAt'],
     actions: {
       list: { isAccessible: () => true },
       show: { isAccessible: () => true },

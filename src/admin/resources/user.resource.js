@@ -1,13 +1,14 @@
-import { User } from "../../entities/user.entity.js";
-import bcrypt from "bcrypt";
+import { User } from '../../entities/user.entity.js';
+import bcrypt from 'bcrypt';
 
 export default (orm) => ({
   resource: { model: User, orm },
   options: {
-    id: "Пользователи",
-    name: "Users",
-    icon: "User",
+    id: 'Пользователи',
+    name: 'Users',
+    icon: 'User',
     parent: null,
+    listProperties: ['email', 'isAdmin', 'createdAt'],
     actions: {
       list: { isAccessible: ({ currentAdmin }) => currentAdmin?.isAdmin },
       show: { isAccessible: ({ currentAdmin }) => currentAdmin?.isAdmin },

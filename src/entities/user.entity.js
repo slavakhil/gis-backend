@@ -1,33 +1,33 @@
 export const User = {
-  name: "User",
-  tableName: "users",
+  name: 'User',
+  tableName: 'users',
   properties: {
     id: {
       primary: true,
-      type: "number",
+      type: 'number',
       autoincrement: true,
     },
     email: {
-      type: "text",
+      type: 'text',
       unique: true,
     },
     password: {
-      type: "text",
+      type: 'text',
     },
     isAdmin: {
-      type: "boolean",
+      type: 'boolean',
       default: false,
-      fieldName: "is_admin",
+      fieldName: 'is_admin',
     },
     createdAt: {
-      type: "Date",
-      fieldName: "created_at",
-      defaultRaw: "now()",
+      type: 'Date',
+      fieldName: 'created_at',
+      defaultRaw: 'now()',
     },
     updatedAt: {
-      type: "Date",
-      fieldName: "updated_at",
-      defaultRaw: "now()",
+      type: 'Date',
+      fieldName: 'updated_at',
+      defaultRaw: 'now()',
       onUpdate: () => new Date(),
     },
   },

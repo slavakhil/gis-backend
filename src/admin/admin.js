@@ -1,18 +1,18 @@
-import AdminJS from "adminjs";
-import * as AdminJSMikroORM from "@adminjs/mikroorm";
-import AdminJSExpress from "@adminjs/express";
-import bcrypt from "bcrypt";
-import session from "express-session";
+import AdminJS from 'adminjs';
+import * as AdminJSMikroORM from '@adminjs/mikroorm';
+import AdminJSExpress from '@adminjs/express';
+import bcrypt from 'bcrypt';
+import session from 'express-session';
+import { locale } from './locale/index.js';
 
 // Ресурсы
-import userResource from "./resources/user.resource.js";
-import newsResource from "./resources/news.resource.js";
-import teamResource from "./resources/team.resource.js";
-import moduleResource from "./resources/module.resource.js";
+import userResource from './resources/user.resource.js';
+import newsResource from './resources/news.resource.js';
+import teamResource from './resources/team.resource.js';
+import moduleResource from './resources/module.resource.js';
 
-import { User } from "../entities/user.entity.js";
-import ruLocale from "./locales/ru.js";
-import { componentLoader } from "./components.bundler.js";
+import { User } from '../entities/user.entity.js';
+import { componentLoader } from './components.bundler.js';
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -21,23 +21,21 @@ AdminJS.registerAdapter({
 
 export const createAdminPanel = async (orm) => {
   const admin = new AdminJS({
-    rootPath: "/admin",
+    rootPath: '/admin',
     databases: [orm],
+    locale,
+    // dashboard: {
+
+    // },
     componentLoader,
     branding: {
-      logo: "",
-      companyName: "Панель администратора",
+      logo: '',
+      companyName: 'Панель администратора',
       softwareBrothers: false,
       withMadeWithLove: false,
     },
-    locale: ruLocale,
 
-    resources: [
-      userResource(orm),
-      newsResource(orm),
-      teamResource(orm),
-      moduleResource(orm),
-    ],
+    resources: [userResource(orm), newsResource(orm), teamResource(orm), moduleResource(orm)],
   });
 
   const em = orm.em.fork();
@@ -55,13 +53,13 @@ export const createAdminPanel = async (orm) => {
         }
         return null;
       },
-      cookiePassword: "session-secret",
-      cookieName: "adminjs",
+      cookiePassword: 'session-secret',
+      cookieName: 'adminjs',
     },
     null,
     {
-      store: new session.MemoryStore(), // можно подключить Redis или другое хранилище
-      secret: "session-secret",
+      store: new session.MemoryStore(),
+      secret: 'session-secret',
       resave: false,
       saveUninitialized: true,
       cookie: {
