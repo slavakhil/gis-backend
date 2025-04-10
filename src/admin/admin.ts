@@ -6,14 +6,14 @@ import session from 'express-session';
 import { locale } from './locale/index.js';
 
 // Ресурсы
-import userResource from './resources/user.resource.js';
-import newsResource from './resources/news.resource.js';
-import teamResource from './resources/team.resource.js';
-import moduleResource from './resources/module.resource.js';
+import userResource from './resources/user.resource.ts';
+import newsResource from './resources/news.resource.ts';
+import teamResource from './resources/team.resource.ts';
+import moduleResource from './resources/module.resource.ts';
 
-import { User } from '../entities/user.entity.js';
-import { componentLoader } from './components.bundler.js';
-import fileResource from './resources/file.resource.js';
+import { User } from '../entities/user.entity.ts';
+import { componentLoader } from './components.bundler.ts';
+import fileResource from './resources/file.resource.ts';
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
