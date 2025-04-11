@@ -1,25 +1,29 @@
-import { ResourceWithOptions } from "adminjs";
-import { EntityManager } from "@mikro-orm/core";
-import { News } from "../../entities/news.entity.js";
+import { ResourceWithOptions } from 'adminjs';
+import { EntityManager } from '@mikro-orm/core';
+import { News } from '../../entities/news.entity.js';
 
 const getNewsResource = (orm: EntityManager): ResourceWithOptions => ({
   resource: { model: News, orm },
   options: {
-    id: "Новости",
+    id: 'Новости',
     parent: null,
-    listProperties: ["author", "content", "date", "createdAt"],
+    listProperties: ['title', 'content', 'author', 'photo', 'date', 'createdAt'],
+    editProperties: ['title', 'content', 'author', 'photo', 'date', 'createdAt'],
+    properties: {
+      photo: {
+        components: {
+          edit: 'UploadPhoto',
+          list: 'ImagePreview',
+          show: 'ImagePreview',
+        },
+      },
+    },
     actions: {
+      new: { isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin) },
+      edit: { isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin) },
+      delete: { isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin) },
       list: { isAccessible: () => true },
       show: { isAccessible: () => true },
-      new: {
-        isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
-      },
-      edit: {
-        isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
-      },
-      delete: {
-        isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
-      },
     },
   },
 });

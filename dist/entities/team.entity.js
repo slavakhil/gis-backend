@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 let TeamMember = class TeamMember {
     id;
     position;
@@ -15,7 +15,7 @@ let TeamMember = class TeamMember {
     firstName;
     patronymic;
     email;
-    image;
+    photo;
 };
 __decorate([
     PrimaryKey(),
@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", String)
 ], TeamMember.prototype, "firstName", void 0);
 __decorate([
-    Property({ fieldName: 'patronymic', type: 'text' }),
+    Property({ fieldName: 'patronymic', type: 'text', nullable: true }),
     __metadata("design:type", String)
 ], TeamMember.prototype, "patronymic", void 0);
 __decorate([
@@ -42,9 +42,9 @@ __decorate([
     __metadata("design:type", String)
 ], TeamMember.prototype, "email", void 0);
 __decorate([
-    ManyToOne(() => File, { nullable: true }),
-    __metadata("design:type", File)
-], TeamMember.prototype, "image", void 0);
+    Property({ fieldName: 'photo', nullable: true }),
+    __metadata("design:type", String)
+], TeamMember.prototype, "photo", void 0);
 TeamMember = __decorate([
     Entity({ tableName: 'team_members' })
 ], TeamMember);

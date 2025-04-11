@@ -7,19 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
-import { File } from './file.entity.js';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 let News = class News {
     id;
+    title;
     date;
     author;
     content;
-    image;
+    photo;
 };
 __decorate([
     PrimaryKey(),
     __metadata("design:type", Number)
 ], News.prototype, "id", void 0);
+__decorate([
+    Property(),
+    __metadata("design:type", String)
+], News.prototype, "title", void 0);
 __decorate([
     Property(),
     __metadata("design:type", Date)
@@ -29,13 +33,13 @@ __decorate([
     __metadata("design:type", String)
 ], News.prototype, "author", void 0);
 __decorate([
-    Property(),
+    Property({ type: 'text' }),
     __metadata("design:type", String)
 ], News.prototype, "content", void 0);
 __decorate([
-    ManyToOne(() => File, { nullable: true }),
-    __metadata("design:type", File)
-], News.prototype, "image", void 0);
+    Property({ fieldName: 'photo', type: 'text', nullable: true }),
+    __metadata("design:type", String)
+], News.prototype, "photo", void 0);
 News = __decorate([
     Entity({ tableName: 'news' })
 ], News);

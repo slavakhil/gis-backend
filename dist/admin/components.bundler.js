@@ -6,3 +6,5 @@ export const componentLoader = new ComponentLoader();
 export const add = (urlPath, componentName) => componentLoader.add(componentName, path.join(__dirname, urlPath));
 export const override = (urlPath, componentName) => componentLoader.override(componentName, path.join(__dirname, urlPath));
 override('components/dashboard', 'DashboardRoute');
+add('components/upload-photo', 'UploadPhoto');
+add('components/image-preview', 'ImagePreview');

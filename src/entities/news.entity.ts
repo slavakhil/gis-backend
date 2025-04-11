@@ -7,14 +7,17 @@ export class News {
   id!: number;
 
   @Property()
+  title!: string;
+
+  @Property()
   date!: Date;
 
   @Property()
   author!: string;
 
-  @Property()
+  @Property({ type: 'text' })
   content!: string;
 
-  @ManyToOne(() => File, { nullable: true })
-  image?: File;
+  @Property({ fieldName: 'photo', type: 'text', nullable: true })
+  photo?: string;
 }

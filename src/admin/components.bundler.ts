@@ -16,3 +16,5 @@ export const override = (urlPath: string, componentName: string) =>
  * Overridable components
  */
 override('components/dashboard', 'DashboardRoute');
+add('components/upload-photo', 'UploadPhoto');
+add('components/image-preview', 'ImagePreview');

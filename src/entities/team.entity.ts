@@ -14,12 +14,12 @@ export class TeamMember {
   @Property({ fieldName: 'first_name', type: 'text' })
   firstName!: string;
 
-  @Property({ fieldName: 'patronymic', type: 'text' })
-  patronymic!: string;
+  @Property({ fieldName: 'patronymic', type: 'text', nullable: true })
+  patronymic?: string;
 
   @Property({ fieldName: 'email', type: 'text' })
   email!: string;
 
-  @ManyToOne(() => File, { nullable: true })
-  image?: File;
+  @Property({ fieldName: 'photo', nullable: true })
+  photo?: string;
 }

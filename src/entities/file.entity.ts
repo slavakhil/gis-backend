@@ -1,22 +1,22 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
-@Entity({ tableName: "file" })
+@Entity({ tableName: 'file' })
 export class File {
   @PrimaryKey()
   id!: number;
 
   @Property()
-  name!: string;
+  name?: string;
 
   @Property()
-  path!: string;
+  path?: string;
 
   @Property()
-  mimetype!: string;
+  mimetype?: string;
 
   @Property()
-  size!: number;
+  size?: number;
 
-  @Property({ fieldName: "created_at", defaultRaw: "now()" })
-  createdAt!: Date;
+  @Property({ fieldName: 'created_at', defaultRaw: 'now()' })
+  createdAt?: Date;
 }

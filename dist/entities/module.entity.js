@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 let Module = class Module {
     id;
     name;
@@ -18,14 +18,14 @@ __decorate([
     __metadata("design:type", Number)
 ], Module.prototype, "id", void 0);
 __decorate([
-    Property({ type: 'text' }),
+    Property({ type: "text" }),
     __metadata("design:type", String)
 ], Module.prototype, "name", void 0);
 __decorate([
-    Property({ type: 'text' }),
+    Property({ type: "text" }),
     __metadata("design:type", String)
 ], Module.prototype, "link", void 0);
 Module = __decorate([
-    Entity({ tableName: 'modules' })
+    Entity({ tableName: "modules" })
 ], Module);
 export { Module };

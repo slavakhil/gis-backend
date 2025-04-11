@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 let File = class File {
     id;
     name;
@@ -37,10 +37,10 @@ __decorate([
     __metadata("design:type", Number)
 ], File.prototype, "size", void 0);
 __decorate([
-    Property({ fieldName: "created_at", defaultRaw: "now()" }),
+    Property({ fieldName: 'created_at', defaultRaw: 'now()' }),
     __metadata("design:type", Date)
 ], File.prototype, "createdAt", void 0);
 File = __decorate([
-    Entity({ tableName: "file" })
+    Entity({ tableName: 'file' })
 ], File);
 export { File };
