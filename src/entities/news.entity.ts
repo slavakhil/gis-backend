@@ -1,5 +1,4 @@
 import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
-import { File } from './file.entity.js';
 
 @Entity({ tableName: 'news' })
 export class News {
@@ -18,6 +17,6 @@ export class News {
   @Property({ type: 'text' })
   content!: string;
 
-  @Property({ fieldName: 'photo', type: 'text', nullable: true })
-  photo?: string;
+  @Property({ fieldName: 'photo', type: 'json', nullable: true })
+  photo?: string[];
 }

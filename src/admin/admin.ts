@@ -11,7 +11,6 @@ import getModuleResource from './resources/module.resource.js';
 import getNewsResource from './resources/news.resource.js';
 import getTeamResource from './resources/team.resource.js';
 import getUserResource from './resources/user.resource.js';
-import getFileResource from './resources/file.resource.js';
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -23,9 +22,6 @@ export const createAdminPanel = async (orm) => {
     rootPath: '/admin',
     databases: [orm],
     locale,
-    // dashboard: {
-
-    // },
     componentLoader,
     branding: {
       logo: '',
@@ -33,13 +29,7 @@ export const createAdminPanel = async (orm) => {
       withMadeWithLove: false,
     },
 
-    resources: [
-      getNewsResource(orm),
-      getTeamResource(orm),
-      getUserResource(orm),
-      // getFileResource(orm),
-      getModuleResource(orm),
-    ],
+    resources: [getNewsResource(orm), getTeamResource(orm), getUserResource(orm), getModuleResource(orm)],
   });
 
   const em = orm.em.fork();
@@ -57,17 +47,17 @@ export const createAdminPanel = async (orm) => {
         }
         return null;
       },
-      cookiePassword: 'session-secret',
-      cookieName: 'adminjs',
+      cookiePassword: process.env.COOKIE_PASSWORD,
+      cookieName: process.env.COOKIE_NAME,
     },
     null,
     {
       store: new session.MemoryStore(),
-      secret: 'session-secret',
+      secret: process.env.COOKIE_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
-        maxAge: 1000 * 60 * 60 * 8, // 8 часов
+        maxAge: Number(process.env.COOKIE_MAX_AGE), // 8 часов
       },
     }
   );

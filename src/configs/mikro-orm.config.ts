@@ -1,20 +1,21 @@
 import { defineConfig } from '@mikro-orm/postgresql';
-import { EntitySchema } from '@mikro-orm/core';
 import { User } from '../entities/user.entity.js';
 import { News } from '../entities/news.entity.js';
 import { TeamMember } from '../entities/team.entity.js';
 import { Module } from '../entities/module.entity.js';
-// import { File } from "../entities/file.entity.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+console.log(process.env.DB_PASSWORD);
 
 const config = defineConfig({
-  host: 'localhost',
-  port: 5432,
-  dbName: 'root',
-  user: 'root',
-  password: 'admin',
+  host: process.env.HOST,
+  port: Number(process.env.DB_PORT),
+  dbName: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   entities: [User, News, TeamMember, Module],
-  // entitiesTs: ["./src/entities/*.entity.ts"],
-  // migrations: { path: './migrations', pathTs: './migrations', glob: '!(*.d).{js,ts}' },
   debug: true,
 });
 

@@ -7,7 +7,6 @@ export const moveFile = async (oldPath: string, newPath: string) => {
 };
 
 export const deleteFile = async (filePath: string) => {
-  console.log('deleteFile', filePath);
   try {
     await fs.unlink(filePath);
   } catch (err: any) {

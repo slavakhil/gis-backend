@@ -3,7 +3,7 @@ import { TeamMember } from '../../entities/team.entity.js';
 import path from 'path';
 import fs from 'fs/promises';
 import { EntityManager } from '@mikro-orm/postgresql';
-import { deleteFile, moveFile, uploadFile } from '../../utils/index.js';
+import { deleteFile, moveFile, uploadFile } from '../../utils/functions.js';
 
 // BEFORE-хук для сохранения предыдущего пути (чтобы удалить старый файл)
 const beforeNew: Before = async (request: ActionRequest, context: ActionContext) => {
@@ -40,8 +40,6 @@ const beforeEdit: Before = async (request: ActionRequest, context: ActionContext
 
   if (upload && upload.name && upload.data) {
     const fileName = uploadFile(upload);
-
-    console.log(fileName);
 
     request.payload = {
       ...request.payload,
@@ -88,8 +86,6 @@ const afterEdit: After<RecordActionResponse> = async (response, request, context
 
   const tmpPrefix = 'public/tmp/';
   const isTmp = newPhoto?.includes('/public/tmp/');
-  console.log(newPhoto, 'newPhoto');
-  console.log(isTmp, 'isTmp');
   if (isTmp) {
     const fileName = newPhoto.replace(tmpPrefix, '');
     const tmpPath = path.join('public/tmp', fileName);
@@ -139,6 +135,7 @@ const getTeamResource = (orm: EntityManager): ResourceWithOptions => ({
   options: {
     id: 'Команда',
     parent: null,
+    listProperties: ['email', 'lastName', 'firstName', 'patronymic', 'position', 'photo'],
     properties: {
       photo: {
         isVisible: {
