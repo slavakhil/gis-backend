@@ -73,7 +73,6 @@ const getTeamResource = (orm: EntityManager): ResourceWithOptions => ({
           return response;
         },
       },
-
       edit: {
         isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
         before: async (request, context) => {
