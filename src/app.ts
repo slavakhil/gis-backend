@@ -9,7 +9,7 @@ import type { NextFunction, Request, Response } from 'express';
 import './utils/cleanerTemp.js';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import newsRoutes from './api/news.routes.js';
+import apiRouter from './api/index.js';
 
 dotenv.config();
 
@@ -52,7 +52,7 @@ const main = async () => {
 
     // Настройка multer
 
-    app.use('/api/news', newsRoutes);
+    app.use('/api', apiRouter);
     // Роут для загрузки файлов
     app.post('/admin/upload', upload.single('file'), (req: Request, res: Response): void => {
       const file = req.file;

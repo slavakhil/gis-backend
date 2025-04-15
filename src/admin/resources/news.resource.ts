@@ -4,11 +4,29 @@ import { EntityManager } from '@mikro-orm/postgresql';
 import path from 'path';
 import { promises as fs } from 'fs';
 import { deleteFile, moveFile } from '../../utils/functions.js';
+import { DateTime } from 'luxon';
+import { convertToMoscowDate } from '../../utils/date.js';
 
 const publicDir = path.join(process.cwd(), 'public');
 const tmpDir = path.join(publicDir, 'tmp');
 
 const beforeNew: Before = async (request: ActionRequest, context: ActionContext) => {
+  const dateField = 'date'; // замените на имя вашего поля
+
+  if (request.payload?.[dateField]) {
+    const original = request.payload[dateField];
+
+    // Парсим ISO-строку как московское время
+    const moscowTime = DateTime.fromISO(original, { zone: 'Europe/Moscow' });
+
+    if (!moscowTime.isValid) {
+      throw new Error(`Невалидная дата: ${original}`);
+    }
+
+    // Переводим в UTC и сохраняем как JS Date
+    request.payload[dateField] = moscowTime.toJSDate();
+  }
+
   const uploads = request.payload?.uploadFiles;
 
   if (uploads && Array.isArray(uploads)) {
@@ -72,6 +90,22 @@ const afterNew: After<RecordActionResponse> = async (response, request, context)
 };
 
 const beforeEdit: Before = async (request: ActionRequest, context: ActionContext) => {
+  const dateField = 'date'; // замените на имя вашего поля
+
+  if (request.payload?.[dateField]) {
+    const original = request.payload[dateField];
+
+    // Парсим ISO-строку как московское время
+    const moscowTime = DateTime.fromISO(original, { zone: 'Europe/Moscow' });
+
+    if (!moscowTime.isValid) {
+      throw new Error(`Невалидная дата: ${original}`);
+    }
+
+    // Переводим в UTC и сохраняем как JS Date
+    request.payload[dateField] = moscowTime.toJSDate();
+  }
+
   const uploads = request.payload?.uploadFile;
 
   // Обработка новых файлов (если загружены)
