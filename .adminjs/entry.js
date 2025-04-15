@@ -9,3 +9,5 @@ import UploadMultiplePhotos from '../dist/admin/components/upload-multiple-photo
 AdminJS.UserComponents.UploadMultiplePhotos = UploadMultiplePhotos
 import ImagesPreview from '../dist/admin/components/images-preview'
 AdminJS.UserComponents.ImagesPreview = ImagesPreview
+import MarkdownEditor from '../dist/admin/components/markdown-editor'
+AdminJS.UserComponents.MarkdownEditor = MarkdownEditor

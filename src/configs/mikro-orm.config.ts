@@ -7,8 +7,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log(process.env.DB_PASSWORD);
-
 const config = defineConfig({
   host: process.env.HOST,
   port: Number(process.env.DB_PORT),

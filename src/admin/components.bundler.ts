@@ -20,3 +20,4 @@ add('components/upload-photo', 'UploadPhoto');
 add('components/image-preview', 'ImagePreview');
 add('components/upload-multiple-photos', 'UploadMultiplePhotos');
 add('components/images-preview', 'ImagesPreview');
+add('components/markdown-editor', 'MarkdownEditor');

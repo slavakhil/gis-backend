@@ -29,7 +29,7 @@ export const createAdminPanel = async (orm) => {
       withMadeWithLove: false,
     },
 
-    resources: [getNewsResource(orm), getTeamResource(orm), getUserResource(orm), getModuleResource(orm)],
+    resources: [getUserResource(orm), getNewsResource(orm), getTeamResource(orm), getModuleResource(orm)],
   });
 
   const em = orm.em.fork();

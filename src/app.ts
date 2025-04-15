@@ -69,7 +69,7 @@ const main = async () => {
     const { admin, adminRouter } = await createAdminPanel(orm);
     app.use(admin.options.rootPath, adminRouter);
 
-    app.listen(Number(process.env.SERVER_PORT), () => {
+    app.listen(3000, () => {
       console.log(`✅ AdminJS запущен: http://localhost:${process.env.SERVER_PORT}/admin`);
     });
   } catch (err) {

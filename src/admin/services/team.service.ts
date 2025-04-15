@@ -120,7 +120,8 @@ export const afterDeleteTeam: After<RecordActionResponse> = async (response, req
 
   const photo = record.params.photo as string;
   if (photo) {
-    const filePath = path.join('public/', photo);
+    const filePath = path.join(process.cwd(), photo);
+    console.log(filePath, 'filePath');
     await deleteFile(filePath);
   }
 

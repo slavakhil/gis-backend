@@ -1,7 +1,13 @@
 import { ResourceWithOptions } from 'adminjs';
 import { TeamMember } from '../../entities/team.entity.js';
 import { EntityManager } from '@mikro-orm/postgresql';
-import { afterDeleteTeam, afterEditTeam, afterNewTeam, beforeEditTeam, beforeNewTeam } from '../services/team.service.js';
+import {
+  afterDeleteTeam,
+  afterEditTeam,
+  afterNewTeam,
+  beforeEditTeam,
+  beforeNewTeam,
+} from '../services/team.service.js';
 
 // Экспорт ресурса
 const getTeamResource = (orm: EntityManager): ResourceWithOptions => ({
@@ -27,14 +33,20 @@ const getTeamResource = (orm: EntityManager): ResourceWithOptions => ({
     },
     actions: {
       new: {
+        isAccessible: ({ currentAdmin }) => {
+          console.log(currentAdmin, 'currentAdmin');
+          return Boolean(currentAdmin?.isAdmin);
+        },
         before: beforeNewTeam,
         after: afterNewTeam,
       },
       edit: {
+        isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
         before: beforeEditTeam,
         after: afterEditTeam,
       },
       delete: {
+        isAccessible: ({ currentAdmin }) => Boolean(currentAdmin?.isAdmin),
         after: afterDeleteTeam,
       },
     },

@@ -143,10 +143,6 @@ export const afterEditNews: After<RecordActionResponse> = async (response, reque
   const recordJson = response.record;
   if (!recordJson) return response;
 
-  console.log(recordJson);
-  // const newPhotos = recordJson.params.photo as string[] | undefined;
-  // const previousPhotos = recordJson.params._previousPhoto as string[] | undefined;
-
   const newPhotoKeys = Object.keys(recordJson.params).filter((key) => key.startsWith('photo.'));
   const previousPhotosKeys = Object.keys(recordJson.params).filter((key) => key.startsWith('_previousPhoto.'));
 
@@ -218,7 +214,7 @@ export const afterEditNews: After<RecordActionResponse> = async (response, reque
 
 export const afterDeleteNews: After<RecordActionResponse> = async (response, request, context: ActionContext) => {
   const { record } = context;
-  console.log(record, 'record');
+
   const photoKeys = Object.keys(record.params).filter((key) => key.startsWith('photo.'));
 
   const photos = photoKeys
@@ -232,12 +228,10 @@ export const afterDeleteNews: After<RecordActionResponse> = async (response, req
 
   if (photos.length === 0) return response;
 
-  console.log(photos, 'photos');
   if (Array.isArray(photos)) {
     for (const photo of photos) {
       try {
         const filePath = path.join(process.cwd(), photo);
-        console.log(filePath, 'filePath');
         await deleteFile(filePath);
       } catch (err) {
         console.warn(`⚠️ Не удалось удалить файл ${photo}:`, err);

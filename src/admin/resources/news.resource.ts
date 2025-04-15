@@ -24,6 +24,15 @@ const getNewsResource = (orm: EntityManager): ResourceWithOptions => ({
           show: 'ImagesPreview',
         },
       },
+      content: {
+        components: {
+          edit: 'MarkdownEditor',
+        },
+        isVisible: { list: false, filter: false, show: true, edit: true },
+      },
+      date: {
+        
+      },
     },
     actions: {
       new: {
