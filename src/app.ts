@@ -10,6 +10,7 @@ import './utils/cleanerTemp.js';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import apiRouter from './api/index.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -41,6 +42,13 @@ const main = async () => {
 
     const app = express();
     app.use(express.json());
+    app.use(
+      cors()
+      //   {
+      //   origin: 'http://localhost:5173',
+      //   credentials: true, //access-control-allow-credentials:true
+      // }
+    );
 
     app.use((req: Request, res: Response, next: NextFunction): void => {
       (req as any).em = orm.em.fork();
