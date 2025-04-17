@@ -5,15 +5,12 @@ import bcrypt from 'bcrypt';
 import session from 'express-session';
 import { locale } from './locale/index.js';
 
-// Ресурсы
-import userResource from './resources/user.resource.js';
-import newsResource from './resources/news.resource.js';
-import teamResource from './resources/team.resource.js';
-import moduleResource from './resources/module.resource.js';
-
 import { User } from '../entities/user.entity.js';
 import { componentLoader } from './components.bundler.js';
-import fileResource from './resources/file.resource.js';
+import getModuleResource from './resources/module.resource.js';
+import getNewsResource from './resources/news.resource.js';
+import getTeamResource from './resources/team.resource.js';
+import getUserResource from './resources/user.resource.js';
 
 AdminJS.registerAdapter({
   Resource: AdminJSMikroORM.Resource,
@@ -25,18 +22,14 @@ export const createAdminPanel = async (orm) => {
     rootPath: '/admin',
     databases: [orm],
     locale,
-    // dashboard: {
-
-    // },
     componentLoader,
     branding: {
       logo: '',
       companyName: 'Панель администратора',
-      softwareBrothers: false,
       withMadeWithLove: false,
     },
 
-    resources: [userResource(orm), newsResource(orm), teamResource(orm), moduleResource(orm), fileResource(orm)],
+    resources: [getUserResource(orm), getNewsResource(orm), getTeamResource(orm), getModuleResource(orm)],
   });
 
   const em = orm.em.fork();
@@ -54,17 +47,17 @@ export const createAdminPanel = async (orm) => {
         }
         return null;
       },
-      cookiePassword: 'session-secret',
-      cookieName: 'adminjs',
+      cookiePassword: process.env.COOKIE_PASSWORD,
+      cookieName: process.env.COOKIE_NAME,
     },
     null,
     {
       store: new session.MemoryStore(),
-      secret: 'session-secret',
+      secret: process.env.COOKIE_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
-        maxAge: 1000 * 60 * 60 * 8, // 8 часов
+        maxAge: Number(process.env.COOKIE_MAX_AGE), // 8 часов
       },
     }
   );

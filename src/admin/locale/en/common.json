@@ -83,7 +83,8 @@
     "photo": "Фото",
     "name": "Название",
     "link": "Ссылка",
-    "password": "Пароль"
+    "password": "Пароль",
+    "title": "Заголовок"
   },
   "messages": {
     "successfullyBulkDeleted": "Успешно удалена {{count}} запись",
