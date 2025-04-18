@@ -57,17 +57,26 @@ export const beforeEditTeam: Before = async (request: ActionRequest, context: Ac
 
 export const afterNewTeam: After<RecordActionResponse> = async (response, request, context) => {
   const { record } = context;
-  const filename = path.basename(response?.record?.params?.photo);
-  const tempPath = path.join(process.cwd(), response?.record?.params?.photo);
-  const finalPath = path.join(process.cwd(), `public/${filename}`);
+  console.log(record, 'record');
+  if (
+    response?.record?.params?.photo &&
+    response?.record?.params?.firstName &&
+    response?.record?.params?.lastName &&
+    response?.record?.params?.position &&
+    response?.record?.params?.email
+  ) {
+    const filename = path.basename(response?.record?.params?.photo);
+    const tempPath = path.join(process.cwd(), response?.record?.params?.photo);
+    const finalPath = path.join(process.cwd(), `public/${filename}`);
 
-  if (response) {
-    try {
-      await fs.rename(`${tempPath}`, `${finalPath}`);
-      record.update({ photo: `/public/${filename}` });
-      await record.save();
-    } catch (err) {
-      console.error('Ошибка при перемещении файла:', err);
+    if (response) {
+      try {
+        await fs.rename(`${tempPath}`, `${finalPath}`);
+        record.update({ photo: `/public/${filename}` });
+        await record.save();
+      } catch (err) {
+        console.error('Ошибка при перемещении файла:', err);
+      }
     }
   }
 

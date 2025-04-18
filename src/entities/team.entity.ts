@@ -5,19 +5,19 @@ export class TeamMember {
   @PrimaryKey()
   id!: number;
 
-  @Property({ type: 'text' })
+  @Property({ type: 'text', nullable: false })
   position!: string;
 
-  @Property({ fieldName: 'last_name', type: 'text' })
+  @Property({ fieldName: 'last_name', type: 'text', nullable: false })
   lastName!: string;
 
-  @Property({ fieldName: 'first_name', type: 'text' })
+  @Property({ fieldName: 'first_name', type: 'text', nullable: false })
   firstName!: string;
 
   @Property({ fieldName: 'patronymic', type: 'text', nullable: true })
   patronymic?: string;
 
-  @Property({ fieldName: 'email', type: 'text' })
+  @Property({ fieldName: 'email', type: 'text', nullable: false })
   email!: string;
 
   @Property({ fieldName: 'photo', nullable: true })

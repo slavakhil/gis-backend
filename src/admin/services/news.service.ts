@@ -9,7 +9,6 @@ const tmpDir = path.join(publicDir, 'tmp');
 
 export const beforeNewNews: Before = async (request: ActionRequest, context: ActionContext) => {
   const dateField = 'date'; // замените на имя вашего поля
-
   if (request.payload?.[dateField]) {
     const original = request.payload[dateField];
 
@@ -48,6 +47,7 @@ export const beforeNewNews: Before = async (request: ActionRequest, context: Act
 
 export const afterNewNews: After<RecordActionResponse> = async (response, request, context) => {
   const { record } = context;
+  console.log(record);
   if (!record) return response;
 
   // Собираем photo[] из record.params
@@ -81,7 +81,13 @@ export const afterNewNews: After<RecordActionResponse> = async (response, reques
   }
 
   // Обновляем запись
-  await record.update({ photo: finalPhotoPaths });
+  if (
+    response?.record?.params?.title &&
+    response?.record?.params?.date &&
+    response?.record?.params?.author &&
+    response?.record?.params?.content
+  )
+    await record.update({ photo: finalPhotoPaths });
 
   return response;
 };
@@ -203,12 +209,13 @@ export const afterEditNews: After<RecordActionResponse> = async (response, reque
   }
 
   // Обновляем запись с новым массивом путей
+
   const baseRecord = await context.resource.findOne(recordJson.id);
   if (baseRecord) {
     await baseRecord.update({ photo: finalPhotos });
     response.record = baseRecord.toJSON();
   }
-
+  console.log(recordJson);
   return response;
 };
 

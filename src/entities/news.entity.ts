@@ -5,16 +5,16 @@ export class News {
   @PrimaryKey()
   id!: number;
 
-  @Property()
+  @Property({ nullable: false })
   title!: string;
 
-  @Property()
+  @Property({ type: 'datetime', nullable: false })
   date!: Date;
 
-  @Property()
+  @Property({ nullable: false })
   author!: string;
 
-  @Property({ type: 'text' })
+  @Property({ type: 'text', nullable: false })
   content!: string;
 
   @Property({ fieldName: 'photo', type: 'json', nullable: true })

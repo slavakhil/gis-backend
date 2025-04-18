@@ -84,17 +84,18 @@
     "name": "Название",
     "link": "Ссылка",
     "password": "Пароль",
-    "title": "Заголовок"
+    "title": "Заголовок",
+    "required": "Обязательное поле"
   },
   "messages": {
     "successfullyBulkDeleted": "Успешно удалена {{count}} запись",
     "successfullyBulkDeleted_plural": "Успешно удалены записи: {{count}}",
-    "successfullyDeleted": "Успешно удалена запись",
-    "successfullyUpdated": "Успешно обновлена запись",
+    "successfullyDeleted": "Запись успешно удалена",
+    "successfullyUpdated": "Запись успешно обновлена",
     "thereWereValidationErrors": "Возникли ошибки валидации",
     "forbiddenError": "You cannot perform action {{actionName}} on {{resourceId}}",
     "anyForbiddenError": "You cannot perform given action",
-    "successfullyCreated": "Успешно добавлена новая запись",
+    "successfullyCreated": "Добавлена новая запись",
     "bulkDeleteError": "Возникла ошибка при удалении записей",
     "errorFetchingRecords": "Возникла ошибка при получении записей",
     "errorFetchingRecord": "Возникла ошибка при получении записи",

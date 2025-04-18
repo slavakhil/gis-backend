@@ -14,7 +14,7 @@ const getNewsResource = (orm: EntityManager): ResourceWithOptions => ({
   options: {
     id: 'Новости',
     parent: null,
-    listProperties: ['title', 'date', 'author', 'content', 'photo'],
+    listProperties: ['date', 'title', 'author', 'content', 'photo'],
     properties: {
       photo: {
         isVisible: { list: true, filter: false, show: true, edit: true },
@@ -25,13 +25,17 @@ const getNewsResource = (orm: EntityManager): ResourceWithOptions => ({
         },
       },
       content: {
+        isRequired: true,
         components: {
           edit: 'MarkdownEditor',
         },
         isVisible: { list: false, filter: false, show: true, edit: true },
       },
+      title: {
+        isRequired: true,
+      },
       date: {
-        
+        isRequired: true,
       },
     },
     actions: {

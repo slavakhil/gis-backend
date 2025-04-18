@@ -15,7 +15,7 @@ const getTeamResource = (orm: EntityManager): ResourceWithOptions => ({
   options: {
     id: 'Команда',
     parent: null,
-    listProperties: ['email', 'lastName', 'firstName', 'patronymic', 'position', 'photo'],
+    listProperties: ['id', 'email', 'lastName', 'firstName', 'patronymic', 'position', 'photo'],
     properties: {
       photo: {
         isVisible: {

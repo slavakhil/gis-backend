@@ -34,7 +34,7 @@ const UploadMultiplePhotos: React.FC<BasePropertyProps> = (props) => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('/admin/upload', {
+      const response = await fetch('/api/file', {
         method: 'POST',
         body: formData,
       });
